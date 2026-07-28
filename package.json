@@ -1,0 +1,20 @@
+{
+  "name": "shobit-portfolio",
+  "version": "1.0.0",
+  "description": "Professional Portfolio Website for Shobit Mahajan - MERN Stack",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm start",
+    "dev": "concurrently "npm run server" "npm run client"",
+    "build": "cd client && npm run build",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install"
+  },
+  "keywords": ["portfolio", "mern", "react", "nodejs", "mongodb"],
+  "author": "Shobit Mahajan",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
