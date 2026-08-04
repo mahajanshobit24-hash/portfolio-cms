@@ -9,7 +9,7 @@ const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const ADMIN_PASSWORD = String(process.env.REACT_APP_ADMIN_PASSWORD); // Default password if not set in .env
+  const ADMIN_PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD; // Default password if not set in .env
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
