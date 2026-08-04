@@ -94,8 +94,15 @@ const Hero = () => {
               <div className="relative glass-card p-8 max-w-md w-full">
                 <div className="flex flex-col items-center text-center">
                   {/* Avatar */}
-                  <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 flex items-center justify-center text-white text-4xl font-bold mb-6 shadow-2xl shadow-blue-500/30">
+                  {/* <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 flex items-center justify-center text-white text-4xl font-bold mb-6 shadow-2xl shadow-blue-500/30">
                     {personalInfo.avatar}
+                  </div> */}
+                  <div className="w-64 h-64 rounded-2xl bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 flex items-center justify-center mb-6 shadow-2xl shadow-blue-500/30 overflow-hidden">
+                    <img
+                      src={personalInfo.avatar}
+                      alt={personalInfo.name || "Profile"}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
                   <h2 className="text-2xl font-bold text-white mb-2">{personalInfo.name}</h2>
