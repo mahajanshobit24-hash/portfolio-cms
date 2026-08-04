@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-//const API_URL = '/api/cms';
-const BASE_URL = process.env.REACT_APP_API_URL || '';
-const API_URL = `${BASE_URL}/api/cms`;
+const API_URL = '/api/cms';
+// const BASE_URL = process.env.REACT_APP_API_URL || '';
+// const API_URL = `${BASE_URL}/api/cms`;
 
 // Get auth token
 const getToken = () => localStorage.getItem('adminToken');
