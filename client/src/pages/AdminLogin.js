@@ -16,6 +16,8 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading(true);
 
+    
+
     // Simple password check - in production use JWT/backend auth
     // Default password: admin123
     if (password === ADMIN_PASSWORD) {
