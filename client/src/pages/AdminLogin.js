@@ -65,7 +65,6 @@ const AdminLogin = () => {
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
-              <p className="text-xs text-slate-600 mt-2">Default password: admin123</p>
             </div>
 
             <button
