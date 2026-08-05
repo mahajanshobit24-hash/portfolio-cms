@@ -10,7 +10,7 @@ const AdminLogin = () => {
   const [loading, setLoading] = useState(false);
 
   // Added a fallback to 'admin123' so it won't break if process.env is undefined
-  const ADMIN_PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD || 'SHobit@123';
+  const ADMIN_PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD || 'Shobit@123';
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
