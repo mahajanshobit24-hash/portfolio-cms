@@ -9,17 +9,15 @@ const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const ADMIN_PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD; // Default password if not set in .env
+  // Added a fallback to 'admin123' so it won't break if process.env is undefined
+  const ADMIN_PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD || 'admin123';
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
 
-    
-
     // Simple password check - in production use JWT/backend auth
-    // Default password: admin123
     if (password === ADMIN_PASSWORD) {
       localStorage.setItem('adminToken', 'shobit-admin-token');
       toast.success('Welcome to Admin Dashboard!');
