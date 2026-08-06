@@ -18,7 +18,7 @@ const AdminLogin = () => {
     setLoading(true);
 
     // Simple password check - in production use JWT/backend auth
-    if (password === process.env.ADMIN_PASSWORD) {
+   if (password === process.env.REACT_APP_ADMIN_PASSWORD) {
       localStorage.setItem('adminToken', 'shobit-admin-token');
       toast.success('Welcome to Admin Dashboard!');
       navigate('/admin/dashboard');
