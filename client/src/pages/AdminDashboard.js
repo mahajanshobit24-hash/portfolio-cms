@@ -98,10 +98,11 @@ const AdminDashboard = () => {
   };
 
   const filteredMessages = messages.filter(msg => {
+    const term = searchTerm.toLowerCase();
     const matchesSearch = 
-      msg.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      msg.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      msg.subject.toLowerCase().includes(searchTerm.toLowerCase());
+      (msg.name || '').toLowerCase().includes(term) ||
+      (msg.email || '').toLowerCase().includes(term) ||
+      (msg.subject || '').toLowerCase().includes(term);
     const matchesStatus = statusFilter === 'all' || msg.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
@@ -112,7 +113,7 @@ const AdminDashboard = () => {
       case 'read': return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
       case 'replied': return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
       case 'archived': return 'bg-slate-500/10 text-slate-400 border-slate-500/20';
-      default: return 'bg-slate-500/10 text-slate-400';
+      default: return 'bg-slate-500/10 text-slate-400 border-slate-500/20';
     }
   };
 
@@ -134,15 +135,17 @@ const AdminDashboard = () => {
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
   ];
 
+  const overviewStats = [
+    { label: 'Total Messages', value: stats.total, icon: Mail, bgClass: 'bg-blue-500/10', textClass: 'text-blue-400' },
+    { label: 'New Messages', value: stats.new, icon: MessageSquare, bgClass: 'bg-emerald-500/10', textClass: 'text-emerald-400' },
+    { label: 'Read Messages', value: stats.read, icon: Eye, bgClass: 'bg-amber-500/10', textClass: 'text-amber-400' },
+    { label: 'Replied', value: stats.replied || 0, icon: CheckCircle, bgClass: 'bg-purple-500/10', textClass: 'text-purple-400' },
+  ];
+
   const renderOverview = () => (
     <div className="space-y-6">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {[
-          { label: 'Total Messages', value: stats.total, icon: Mail, color: 'blue' },
-          { label: 'New Messages', value: stats.new, icon: MessageSquare, color: 'emerald' },
-          { label: 'Read Messages', value: stats.read, icon: Eye, color: 'amber' },
-          { label: 'Replied', value: stats.replied || 0, icon: CheckCircle, color: 'purple' },
-        ].map((stat, index) => (
+        {overviewStats.map((stat, index) => (
           <motion.div
             key={stat.label}
             initial={{ opacity: 0, y: 20 }}
@@ -151,7 +154,7 @@ const AdminDashboard = () => {
             className="glass-card p-6"
           >
             <div className="flex items-center justify-between mb-4">
-              <div className={`w-10 h-10 rounded-xl bg-${stat.color}-500/10 flex items-center justify-center text-${stat.color}-400`}>
+              <div className={`w-10 h-10 rounded-xl ${stat.bgClass} ${stat.textClass} flex items-center justify-center`}>
                 <stat.icon size={20} />
               </div>
               <span className="text-2xl font-bold text-white">{stat.value}</span>
@@ -382,20 +385,22 @@ const AdminDashboard = () => {
     </div>
   );
 
+  const analyticsStats = [
+    { label: 'Total', value: stats.total, textClass: 'text-blue-400' },
+    { label: 'New', value: stats.new, textClass: 'text-emerald-400' },
+    { label: 'Read', value: stats.read, textClass: 'text-amber-400' },
+    { label: 'Replied', value: stats.replied || 0, textClass: 'text-purple-400' },
+  ];
+
   const renderAnalytics = () => (
     <div className="space-y-6">
       <div className="glass-card p-6">
         <h3 className="text-lg font-bold text-white mb-6">Message Analytics</h3>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          {[
-            { label: 'Total', value: stats.total, color: 'blue' },
-            { label: 'New', value: stats.new, color: 'emerald' },
-            { label: 'Read', value: stats.read, color: 'amber' },
-            { label: 'Replied', value: stats.replied || 0, color: 'purple' },
-          ].map((stat) => (
+          {analyticsStats.map((stat) => (
             <div key={stat.label} className="text-center p-4 rounded-xl bg-slate-800/50">
-              <div className={`text-3xl font-bold text-${stat.color}-400 mb-1`}>{stat.value}</div>
+              <div className={`text-3xl font-bold ${stat.textClass} mb-1`}>{stat.value}</div>
               <div className="text-sm text-slate-500">{stat.label}</div>
             </div>
           ))}
